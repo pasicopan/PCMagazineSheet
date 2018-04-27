@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>杂志汇总表</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="navbar.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">杂志汇总表</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="pcauto"><a href="/PCMagazineSheet/home/Magazine/index/name/pcauto">汽车杂志</a></li>
+            <li id="pchouse" ><a href="/PCMagazineSheet/home/Magazine/index/name/pchouse">家居杂志</a></li>
+            <li id="pclady" ><a href="/PCMagazineSheet/home/Magazine/index/name/pclady">时尚杂志</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!--/.container-fluid -->
+    </nav>
+
+    <!-- Main component for a primary marketing message or call to action -->
+
+    <div class="list-group">
+      <!-- <a href="#" class="list-group-item active"></a>
+      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+      <a href="#" class="list-group-item">Morbi leo risus</a>
+      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+      <a href="#" class="list-group-item">Vestibulum at eros</a> -->
+    </div>
+  </div>
+  <!-- /container -->
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="__ROOT__/Public/bootstrap-3.3.5-dist/js/jquery.min.js"></script>
+  <script src="__ROOT__/Public/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+  <script type="text/javascript">
+  var name = '{$name}';
+  if(''==name){
+    location.href = '/PCMagazineSheet/home/Index/index/name/pcauto';
+    // return false
+  }
+    var cmsdata = {$cmsdata};
+    var $listGroup = $('.list-group');
+    var deviceType = '';
+    console.log('name is:',name);
+
+      if(''==cmsdata){
+        // alert('获取cms 数据失败！');
+        // return false;
+      }
+      $('#'+name).addClass('active');
+      for(var i= 0,j=cmsdata.rows.length;i<j;i++){
+        switch (cmsdata.rows[i].deviceType) {
+          case '4,8':
+          deviceType = 'iphone'
+          break;
+          case '1,2':
+
+          deviceType = 'ipad'
+          break;
+          case '16':
+
+          deviceType = 'android'
+          break;
+          default:
+
+        }
+        var $e = $('<a href="http://192.168.22.28/PCMagazineSheet/home/Magazine/magazine/name/'+name+'/issueid/'+cmsdata.rows[i].id+'/title/'+cmsdata.rows[i].name+','+deviceType+'" class="list-group-item">'+cmsdata.rows[i].name+'/<span style="font-weight:bold;margin-left:1em;">'+deviceType+'版</span></a>')
+        $listGroup.append($e);
+      }
+
+
+  </script>
+</body>
+
+</html>
